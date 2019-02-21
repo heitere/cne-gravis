@@ -9,11 +9,11 @@
 * Configuration:
 	* Compile lbfgsb optimization tool under folder 'methods/lbfgsb'. Please follow the instructions in README.md under the same folder.
 	* Download and compile the following baseline methods in 'methods' folder, under the subfolders same as method names.
-      * Deepwalk: https://github.com/phanein/deepwalk
-      * LINE: https://github.com/tangjianpku/LINE
-      * node2vec: https://github.com/aditya-grover/node2vec
-      * metapath2vec: https://ericdongyx.github.io/metapath2vec/m2v.html    
-	* Configure file 'methods/init.m' to indicate the local python path.
+        * Deepwalk: https://github.com/phanein/deepwalk
+        * LINE: https://github.com/tangjianpku/LINE
+        * node2vec: https://github.com/aditya-grover/node2vec
+        * metapath2vec: https://ericdongyx.github.io/metapath2vec/m2v.html    
+    * Configure file 'methods/init.m' to indicate the local python path.
 
 ### Datasets ###
 * Facebook: https://snap.stanford.edu/data/egonets-Facebook.html
