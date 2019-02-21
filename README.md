@@ -8,7 +8,11 @@
 
 * Configuration:
 	* Compile lbfgsb optimization tool under folder 'methods/lbfgsb'. Please follow the instructions in README.md under the same folder.
-	* Compile baseline methods Deepwalk, LINE, node2vec, metapath2vec in 'methods' folder, under the subfolders same as method names.
+	* Download and compile the following baseline methods in 'methods' folder, under the subfolders same as method names.
+      * Deepwalk: https://github.com/phanein/deepwalk
+      * LINE: https://github.com/tangjianpku/LINE
+      * node2vec: https://github.com/aditya-grover/node2vec
+      * metapath2vec: https://ericdongyx.github.io/metapath2vec/m2v.html    
 	* Configure file 'methods/init.m' to indicate the local python path.
 
 ### Datasets ###
@@ -22,10 +26,10 @@
 
 ### Run ###
 
-* __link prediction experiment__: run script 'split_train_test.py' under folder 'link_prediction/train_test' to generage Train/Test splits. Run script 'run_batch.m' under folder 'link_prediction'.
+* __link prediction experiment__: run script 'split_train_test.py' under folder 'link_prediction/train_test' to generate Train/Test splits. Run script 'run_batch.m' under folder 'link_prediction'.
 * __multilabel classification with link prediction__: run script 'run_batch.m' under folder 'multilabel_lp'
 * __multilabel classification with logistic regression__: run script 'run_batch.m' under folder 'multilabel_lr'
-* __multi-relational data visualization__: run script 'run.m' under folder 'multilabel_classification' to have a interactive visualization, run script 'plotFigures.m' to reproduce the figures.
+* __multi-relational data visualization__: run script 'run.m' under folder 'visualization_multi_relation' to have an interactive visualization, run script 'plotFigures.m' to reproduce the figures.
 * __Intuition about the objective function__: run script 'objIntuition.m' under folder 'objective_intuition'.
 * __run time__: the runtime can be measured by putting 'tic' and 'toc' commands in script 'link_prediction/run_batch.m' for each method and setting.
 
