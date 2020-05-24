@@ -1,6 +1,6 @@
 # README #
 
-### Source code for ICLR2019 paper: Conditional Network Embeddings ###
+### Source code for ICLR 2019 paper: Conditional Network Embeddings ###
 
 ### Set up ###
 
