@@ -2,7 +2,7 @@ import numpy as np
 from collections import defaultdict
 
 class ConditionalNetworkEmbedding:
-    def __init__(self, A, d, s1, s2, prior_dist):
+    def __init__(self, A, d, s1, s2, prior_dist, pred_dist):
         self.__A = A
         self.__d = d
         self.__s1 = s1
@@ -10,6 +10,7 @@ class ConditionalNetworkEmbedding:
         self.__s_diff = (1/s1**2 - 1/s2**2)
         self.__s_div = s1/s2
         self.__prior_dist = prior_dist
+        self.__pred_dist = pred_dist
 
     def _subsample(self, A, neg_pos_ratio):
         sids_list = []
@@ -121,6 +122,8 @@ class ConditionalNetworkEmbedding:
             if verbose:
                 print('Epoch: {:d}, grad norm: {:.4f}, obj: {:.4f}, obj smoothness: {:.4f}'.format(epoch, grad_norm, obj, obj_smooth), flush=True)
             if obj_smooth < ftol:
+                if verbose:
+                    print('Epoch {:d} of {:d}: stopping optimization because obj_smooth < ftol ({:.5f} < {:.5f})'.format(epoch, num_epochs, obj_smooth, ftol))
                 break
         return X
 
@@ -131,6 +134,7 @@ class ConditionalNetworkEmbedding:
             self.__s_div, self.__s_diff, alpha=lr, num_epochs=max_iter,
             ftol=ftol, subsample=subsample, neg_pos_ratio=neg_pos_ratio,
             verbose=verbose)
+        return self.__emb
 
     def predict(self, E):
         edge_dict = defaultdict(list)
@@ -142,7 +146,7 @@ class ConditionalNetworkEmbedding:
         pred = []
         ids = []
         for u in edge_dict.keys():
-            pred.extend(self._row_posterior(u, edge_dict[u], self.__emb, self.__prior_dist, self.__s_div, self.__s_diff))
+            pred.extend(self._row_posterior(u, edge_dict[u], self.__emb, self.__pred_dist, self.__s_div, self.__s_diff))
             ids.extend(ids_dict[u])
 
         return [p for _,p in sorted(zip(ids, pred))]
